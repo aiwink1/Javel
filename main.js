@@ -1172,7 +1172,7 @@ module.exports = {
             result.secret = decodeURIComponent(otpauthUrl.searchParams.get('secret'));
         }
 
-        const label = decodeURIComponent(otpauthUrl.pathname.replace(RegExp('^//totp/'), ''));
+        const label = decodeURIComponent(otpauthUrl.pathname.replace(/^\//, ''));
         if (!label.includes(":")) {
             result.account = label;
         } else {
@@ -34761,7 +34761,7 @@ var __webpack_exports__ = {};
 "use strict";
 
 
-document.getElementById('app-version').innerText = {"version":"2.1.0-04e82932c9d2bc2b73ea071cc6fcabd9f3789abe"}.version;
+document.getElementById('app-version').innerText = {"version":"2.1.1-1149819ea62301cbaf9defc3810bc7c6d1f8347f"}.version;
 
 const {
   BrowserQRCodeReader,
@@ -34838,7 +34838,7 @@ function updateQrCode() {
     const account = document.getElementById('input-account').value;
     const period = document.getElementById('input-period').value;
 
-    let qrMessage = 'https://qoomon.me'
+    let qrMessage = 'https://qoo.monster'
     document.getElementById('otpauth-qr-overlay').style.display = '';
     
     if (secret && account) {
@@ -34876,8 +34876,8 @@ function updateQrCode() {
 }
 
 function updateLabel() {
-    const issuer = document.getElementById('input-issuer').value;
-    const account = document.getElementById('input-account').value;
+    const issuer = document.getElementById('input-issuer').value?.trim();
+    const account = document.getElementById('input-account').value?.trim();
     let label = issuer;
     if(issuer && account) {
       label = `${issuer} (${account})`
